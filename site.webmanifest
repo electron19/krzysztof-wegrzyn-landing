@@ -1,0 +1,15 @@
+{
+  "name": "Krzysztof Węgrzyn - Szkolenia Excel, Power Query i Power BI",
+  "short_name": "KW Szkolenia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#217346",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ]
+}
