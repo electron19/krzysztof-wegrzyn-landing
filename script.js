@@ -32,29 +32,44 @@ nav?.addEventListener("click", (event) => {
   }
 });
 
-form?.addEventListener("submit", (event) => {
+form?.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const data = new FormData(form);
-  const name = String(data.get("name") || "").trim();
-  const email = String(data.get("email") || "").trim();
-  const topic = String(data.get("topic") || "").trim();
-  const message = String(data.get("message") || "").trim();
-
-  const subject = encodeURIComponent(`Zapytanie o szkolenie: ${topic}`);
-  const body = encodeURIComponent(
-    [
-      `Imię i firma: ${name}`,
-      `E-mail: ${email}`,
-      `Obszar szkolenia: ${topic}`,
-      "",
-      "Opis potrzeby:",
-      message
-    ].join("\n")
-  );
-
-  window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-
+  
+  // Zmiana statusu na czas wysyłania
   if (formStatus) {
-    formStatus.textContent = "Przygotowano wiadomość w domyślnym programie pocztowym.";
+    formStatus.textContent = "Wysyłanie wiadomości...";
+    formStatus.style.color = "inherit"; // Reset koloru, jeśli używasz stylów
+  }
+
+  // Pobranie danych z formularza
+  const data = new FormData(form);
+
+  try {
+    // TUTAJ PODMIENIASZ URL NA TEN, KTÓRY OTRZYMASZ OD FORMSPREE / WEB3FORMS
+    const response = await fetch("https://formspree.io/f/TWOJ_UNIKALNY_KOD_Z_FORMSPREE", {
+      method: "POST",
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      if (formStatus) {
+        formStatus.textContent = "Dziękuję! Twoja wiadomość została wysłana.";
+        formStatus.style.color = "green";
+      }
+      form.reset(); // Czyszczenie pól formularza po sukcesie
+    } else {
+      if (formStatus) {
+        formStatus.textContent = "Ups! Wystąpił problem z wysłaniem formularza.";
+        formStatus.style.color = "red";
+      }
+    }
+  } catch (error) {
+    if (formStatus) {
+      formStatus.textContent = "Błąd połączenia. Sprawdź swój internet i spróbuj ponownie.";
+      formStatus.style.color = "red";
+    }
   }
 });
