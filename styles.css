@@ -6,7 +6,6 @@
   --excel-500: #2ea36f;
   --excel-100: #e2f0d9;
   --excel-50: #f4faf1;
-  --powerbi: #f2c811;
   --ink: #111915;
   --muted: #5b6861;
   --line: #d7e2db;
@@ -202,7 +201,7 @@ textarea {
 
 .hero {
   position: relative;
-  min-height: clamp(640px, 86svh, 790px);
+  min-height: clamp(700px, 90svh, 840px);
   display: grid;
   align-items: center;
   overflow: hidden;
@@ -240,7 +239,7 @@ textarea {
 .eyebrow,
 .section-kicker {
   margin: 0 0 14px;
-  color: var(--powerbi);
+  color: var(--excel-100);
   font-size: 0.78rem;
   font-family: var(--font-data);
   font-weight: 650;
@@ -249,22 +248,47 @@ textarea {
 }
 
 .hero h1 {
-  max-width: 760px;
+  max-width: 960px;
   margin: 0;
   font-family: var(--font-display);
-  font-size: 5.8rem;
+  font-size: 4.85rem;
   font-weight: 640;
-  line-height: 1;
+  line-height: 1.03;
   letter-spacing: 0;
 }
 
 .hero-lede {
-  max-width: 660px;
+  max-width: 760px;
   margin: 24px 0 0;
   color: rgba(255, 255, 255, 0.88);
   font-family: var(--font-body);
   font-size: 1.2rem;
   line-height: 1.58;
+}
+
+.hero-benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 850px;
+  margin: 24px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-benefits li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 8px 12px;
+  border: 1px solid rgba(226, 240, 217, 0.32);
+  border-radius: 999px;
+  background: rgba(226, 240, 217, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-ui);
+  font-size: 0.92rem;
+  font-weight: 560;
+  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 
 .hero-actions {
@@ -300,13 +324,14 @@ textarea {
 }
 
 .button-primary {
-  background: var(--powerbi);
-  color: #1f1b08;
+  background: var(--excel-700);
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(33, 115, 70, 0.22);
 }
 
 .button-primary:hover {
   border-color: var(--excel-500);
-  background: var(--excel-700);
+  background: var(--excel-800);
   color: #fff;
 }
 
@@ -329,7 +354,7 @@ textarea {
 .hero-proof {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  width: min(760px, 100%);
+  width: min(920px, 100%);
   margin: 44px 0 0;
   padding: 0;
   border-top: 1px solid rgba(255, 255, 255, 0.22);
@@ -431,9 +456,19 @@ h3 {
   gap: 18px;
 }
 
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
 .training-card,
 .audience-item,
-.process-list li {
+.process-list li,
+.problem-card,
+.offer-card,
+.about-card,
+.trust-card {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
@@ -443,6 +478,25 @@ h3 {
     box-shadow 190ms ease,
     border-color 190ms ease,
     background 190ms ease;
+}
+
+.problem-card {
+  min-height: 260px;
+  padding: 22px;
+}
+
+.problem-card span {
+  display: inline-flex;
+  margin-bottom: 22px;
+  color: var(--excel-700);
+  font-family: var(--font-data);
+  font-weight: 650;
+}
+
+.problem-card p {
+  margin: 12px 0 0;
+  color: var(--muted);
+  font-size: 0.96rem;
 }
 
 .training-card {
@@ -466,7 +520,7 @@ h3 {
 }
 
 .training-card.accent-bi::before {
-  background: var(--powerbi);
+  background: var(--excel-800);
 }
 
 .module-label {
@@ -598,17 +652,17 @@ h3 {
 .preview-cell.metric strong {
   color: var(--excel-800);
   font-family: var(--font-data);
-  font-size: 2.45rem;
+  font-size: 1.7rem;
   font-weight: 640;
-  line-height: 1;
+  line-height: 1.08;
 }
 
-.preview-cell.metric.yellow {
-  background: #fff9d9;
+.preview-cell.metric.green {
+  background: #f2fbf5;
 }
 
-.preview-cell.metric.yellow strong {
-  color: #7c6505;
+.preview-cell.metric.green strong {
+  color: var(--excel-900);
 }
 
 .preview-cell.chart {
@@ -697,17 +751,17 @@ h3 {
 
 .chart-line polyline {
   fill: none;
-  stroke: var(--powerbi);
+  stroke: var(--excel-500);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 4;
-  filter: drop-shadow(0 2px 3px rgba(124, 101, 5, 0.28));
+  filter: drop-shadow(0 2px 3px rgba(33, 115, 70, 0.24));
   transition: stroke 180ms ease, filter 180ms ease;
 }
 
 .chart-line circle {
   fill: #fff;
-  stroke: var(--powerbi);
+  stroke: var(--excel-500);
   stroke-width: 4;
   transition: stroke 180ms ease;
 }
@@ -734,9 +788,10 @@ h3 {
 .chart-column b {
   margin-bottom: 4px;
   color: var(--excel-800);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 650;
   line-height: 1;
+  text-align: center;
 }
 
 .chart-column span {
@@ -788,7 +843,122 @@ h3 {
   width: 20px;
   height: 3px;
   border-radius: 999px;
-  background: var(--powerbi);
+  background: var(--excel-500);
+}
+
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.offer-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 610px;
+  padding: 28px;
+}
+
+.offer-card > p {
+  margin: 14px 0 22px;
+  color: var(--muted);
+}
+
+.offer-block {
+  display: grid;
+  gap: 8px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+}
+
+.offer-block strong {
+  color: var(--excel-900);
+}
+
+.offer-block ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 18px;
+  color: #26352e;
+}
+
+.offer-block p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.inline-cta {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: auto;
+  padding-top: 18px;
+  color: var(--excel-700);
+  font-family: var(--font-ui);
+  font-weight: 650;
+  text-decoration-color: rgba(33, 115, 70, 0.36);
+  text-underline-offset: 4px;
+  transition: color 180ms ease, transform 180ms ease, text-decoration-color 180ms ease;
+}
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+  gap: clamp(34px, 6vw, 84px);
+  align-items: center;
+}
+
+.about-card {
+  padding: 30px;
+}
+
+.about-card h3 {
+  margin-bottom: 18px;
+}
+
+.about-card ul,
+.final-benefits {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-card li,
+.final-benefits li {
+  position: relative;
+  padding-left: 22px;
+  color: #26352e;
+}
+
+.about-card li::before,
+.final-benefits li::before {
+  content: "";
+  position: absolute;
+  top: 0.72em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--excel-700);
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.trust-card {
+  min-height: 210px;
+  padding: 24px;
+}
+
+.trust-card p {
+  margin: 12px 0 0;
+  color: var(--muted);
 }
 
 .preview-cell.rows {
@@ -822,12 +992,19 @@ h3 {
 }
 
 .section-process .section-kicker {
-  color: var(--powerbi);
+  color: var(--excel-100);
+}
+
+.process-copy {
+  max-width: 720px;
+  margin: 18px 0 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1.03rem;
 }
 
 .process-list {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 16px;
   margin: 0;
   padding: 0;
@@ -845,7 +1022,7 @@ h3 {
 .process-list span {
   display: inline-flex;
   margin-bottom: 32px;
-  color: var(--powerbi);
+  color: var(--excel-100);
   font-family: var(--font-data);
   font-weight: 640;
 }
@@ -898,11 +1075,11 @@ details p {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  margin-top: 12px;
+  margin-top: 22px;
   padding: 10px 14px;
-  border-left: 4px solid var(--powerbi);
-  background: #fff9d9;
-  color: #4d420d;
+  border-left: 4px solid var(--excel-700);
+  background: var(--excel-50);
+  color: var(--excel-900);
   border-radius: 0 6px 6px 0;
   font-family: var(--font-ui);
   font-weight: 620;
@@ -921,11 +1098,18 @@ details p {
   transition: transform 190ms ease, box-shadow 190ms ease, border-color 190ms ease, background 190ms ease;
 }
 
-.form-honeypot {
+.final-benefits {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 22px;
+}
+
+.contact-form .form-honeypot {
   position: absolute;
   left: -10000px;
   width: 1px;
   height: 1px;
+  padding: 0;
+  border: 0;
   opacity: 0;
   pointer-events: none;
 }
@@ -972,12 +1156,22 @@ details p {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .hero-benefits li:hover {
+    border-color: rgba(46, 163, 111, 0.7);
+    background: rgba(46, 163, 111, 0.18);
+    transform: translateY(-2px);
+  }
+
   .hero-proof div:hover {
     transform: translateY(-2px);
   }
 
   .training-card:hover,
-  .audience-item:hover {
+  .audience-item:hover,
+  .problem-card:hover,
+  .offer-card:hover,
+  .about-card:hover,
+  .trust-card:hover {
     border-color: rgba(33, 115, 70, 0.32);
     background:
       linear-gradient(180deg, rgba(226, 240, 217, 0.42), rgba(255, 255, 255, 0) 48%),
@@ -988,6 +1182,12 @@ details p {
 
   .training-card:hover::before {
     height: 8px;
+  }
+
+  .inline-cta:hover {
+    color: var(--excel-900);
+    text-decoration-color: var(--excel-700);
+    transform: translateX(4px);
   }
 
   .outcome-list div:hover {
@@ -1132,7 +1332,7 @@ details p {
 
 @media (max-width: 980px) {
   .hero h1 {
-    font-size: 4.7rem;
+    font-size: 3.72rem;
   }
 
   .hero-lede {
@@ -1178,8 +1378,15 @@ details p {
 
   .training-grid,
   .audience-grid,
+  .problem-grid,
+  .trust-grid,
   .process-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .offer-grid,
+  .about-layout {
+    grid-template-columns: 1fr;
   }
 
   .two-column,
@@ -1204,7 +1411,7 @@ details p {
   }
 
   .hero {
-    min-height: 84svh;
+    min-height: auto;
   }
 
   .hero-media {
@@ -1223,7 +1430,7 @@ details p {
   }
 
   .hero h1 {
-    font-size: 3.22rem;
+    font-size: 2.52rem;
   }
 
   h2 {
@@ -1237,6 +1444,9 @@ details p {
   .hero-proof,
   .training-grid,
   .audience-grid,
+  .problem-grid,
+  .offer-grid,
+  .trust-grid,
   .process-list,
   .preview-grid {
     grid-template-columns: 1fr;
@@ -1254,8 +1464,15 @@ details p {
 
   .training-card,
   .audience-item,
+  .problem-card,
+  .offer-card,
+  .trust-card,
   .process-list li {
     min-height: auto;
+  }
+
+  .final-benefits {
+    grid-template-columns: 1fr;
   }
 
   .preview-cell.chart {
