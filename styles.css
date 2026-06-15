@@ -703,6 +703,15 @@ details p {
   box-shadow: var(--shadow);
 }
 
+.form-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .contact-form label {
   display: grid;
   gap: 7px;
@@ -741,6 +750,52 @@ details p {
   margin: 0;
   color: var(--excel-800);
   font-size: 0.94rem;
+}
+
+.thanks-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    linear-gradient(135deg, rgba(33, 115, 70, 0.12), transparent 38%),
+    var(--excel-50);
+}
+
+.thanks-view {
+  width: min(100%, 680px);
+  display: grid;
+  gap: 28px;
+}
+
+.thanks-view .brand {
+  color: var(--excel-950);
+}
+
+.thanks-view .brand-mark {
+  border-color: rgba(33, 115, 70, 0.2);
+}
+
+.thanks-panel {
+  padding: clamp(30px, 7vw, 54px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-lg);
+}
+
+.thanks-panel h1 {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  line-height: 1;
+}
+
+.thanks-panel p:not(.section-kicker) {
+  max-width: 52ch;
+  margin: 0 0 24px;
+  color: var(--muted);
+  font-size: 1.05rem;
 }
 
 .site-footer {
