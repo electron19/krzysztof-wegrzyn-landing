@@ -4,11 +4,16 @@ Thumbs.db
 *.zip
 .env
 .env.*
+!.env.example
 contact-config.php
 node_modules/
+.next/
+.vercel/
+out/
 dist/
 build/
 .cache/
 .tmp/
+tsconfig.tsbuildinfo
 .idea/
 .vscode/

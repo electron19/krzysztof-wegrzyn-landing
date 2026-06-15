@@ -6,8 +6,6 @@
   --excel-500: #2ea36f;
   --excel-100: #e2f0d9;
   --excel-50: #f4faf1;
-  --excel-menu: #10e660;
-  --power-bi: #f2c811;
   --ink: #111915;
   --muted: #5b6861;
   --line: #d7e2db;
@@ -19,10 +17,15 @@
   --shadow-lg: 0 26px 58px rgba(9, 32, 22, 0.16);
   --radius: 8px;
   --max: 1160px;
-  --font-body: "Aptos", "Segoe UI Variable Text", "Segoe UI", "Calibri", Arial, sans-serif;
-  --font-display: "Aptos Display", "Aptos", "Segoe UI Variable Display", "Segoe UI", "Calibri", Arial, sans-serif;
-  --font-ui: "Aptos", "Segoe UI Variable Text", "Segoe UI", "Calibri", Arial, sans-serif;
-  --font-data: "Aptos", "Segoe UI Variable Text", "Segoe UI", "Calibri", Arial, sans-serif;
+  --font-body:
+    "Aptos", "Segoe UI Variable Text", "Segoe UI", "Calibri", Arial, sans-serif;
+  --font-display:
+    "Aptos Display", "Aptos", "Segoe UI Variable Display", "Segoe UI",
+    "Calibri", Arial, sans-serif;
+  --font-ui:
+    "Aptos", "Segoe UI Variable Text", "Segoe UI", "Calibri", Arial, sans-serif;
+  --font-data:
+    "Aptos", "Segoe UI Variable Text", "Segoe UI", "Calibri", Arial, sans-serif;
   color-scheme: light;
 }
 
@@ -88,7 +91,10 @@ textarea {
   gap: 24px;
   padding: 16px clamp(18px, 4vw, 54px);
   color: #fff;
-  transition: background 180ms ease, box-shadow 180ms ease, color 180ms ease;
+  transition:
+    background 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease;
 }
 
 .site-header.is-scrolled,
@@ -155,15 +161,25 @@ textarea {
 
 .site-nav a {
   position: relative;
-  padding-block: 4px;
+  padding: 5px 1px;
+  border-radius: 5px;
   text-decoration: none;
   opacity: 0.88;
-  transition: color 180ms ease, opacity 180ms ease;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    opacity 180ms ease;
 }
 
 .site-nav a:hover {
-  color: var(--excel-menu);
+  color: #fff;
   opacity: 1;
+}
+
+.site-header.is-scrolled .site-nav a:hover,
+.site-header.is-open .site-nav a:hover {
+  background: rgba(226, 240, 217, 0.56);
+  color: var(--excel-800);
 }
 
 .site-nav a::after {
@@ -174,15 +190,23 @@ textarea {
   left: 0;
   height: 2px;
   border-radius: 999px;
-  background: currentColor;
+  background: var(--excel-100);
   opacity: 0;
   transform: scaleX(0.35);
   transform-origin: center;
-  transition: transform 180ms ease, opacity 180ms ease;
+  transition:
+    background 180ms ease,
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.site-header.is-scrolled .site-nav a::after,
+.site-header.is-open .site-nav a::after {
+  background: var(--excel-700);
 }
 
 .site-nav a:hover::after {
-  opacity: 0.42;
+  opacity: 0.84;
   transform: scaleX(1);
 }
 
@@ -219,7 +243,7 @@ textarea {
 }
 
 .hero-media {
-  background-image: url("assets/krzysztof-wegrzyn-excel-power-bi-training.png");
+  background-image: url("/assets/krzysztof-wegrzyn-excel-power-bi-training.png");
   background-position: center;
   background-size: cover;
   transform: scale(1.02);
@@ -228,7 +252,13 @@ textarea {
 .hero-shade {
   z-index: -1;
   background:
-    linear-gradient(90deg, rgba(9, 32, 22, 0.95) 0%, rgba(9, 32, 22, 0.82) 36%, rgba(9, 32, 22, 0.34) 68%, rgba(9, 32, 22, 0.16) 100%),
+    linear-gradient(
+      90deg,
+      rgba(9, 32, 22, 0.95) 0%,
+      rgba(9, 32, 22, 0.82) 36%,
+      rgba(9, 32, 22, 0.34) 68%,
+      rgba(9, 32, 22, 0.16) 100%
+    ),
     linear-gradient(0deg, rgba(9, 32, 22, 0.42) 0%, rgba(9, 32, 22, 0.05) 42%);
 }
 
@@ -290,7 +320,10 @@ textarea {
   font-family: var(--font-ui);
   font-size: 0.92rem;
   font-weight: 560;
-  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
 }
 
 .hero-actions {
@@ -364,7 +397,9 @@ textarea {
 
 .hero-proof div {
   padding: 18px 18px 0 0;
-  transition: transform 180ms ease, border-color 180ms ease;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease;
 }
 
 .hero-proof dt {
@@ -514,7 +549,9 @@ h3 {
   inset: 0 0 auto;
   height: 6px;
   background: var(--excel-700);
-  transition: height 190ms ease, opacity 190ms ease;
+  transition:
+    height 190ms ease,
+    opacity 190ms ease;
 }
 
 .training-card.accent-query::before {
@@ -567,7 +604,11 @@ h3 {
 
 .section-muted {
   background:
-    linear-gradient(90deg, rgba(226, 240, 217, 0.55), rgba(255, 255, 255, 0.72)),
+    linear-gradient(
+      90deg,
+      rgba(226, 240, 217, 0.55),
+      rgba(255, 255, 255, 0.72)
+    ),
     var(--surface-soft);
 }
 
@@ -586,7 +627,10 @@ h3 {
   gap: 3px;
   padding: 18px 0;
   border-top: 1px solid var(--line);
-  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
 }
 
 .outcome-list strong {
@@ -603,7 +647,10 @@ h3 {
   background: #fff;
   box-shadow: var(--shadow);
   overflow: hidden;
-  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
 }
 
 .preview-toolbar {
@@ -635,7 +682,11 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 6px;
   background: var(--excel-50);
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
 }
 
 .preview-cell.metric {
@@ -731,14 +782,13 @@ h3 {
   min-height: 178px;
   border-bottom: 1px solid #8d9b93;
   border-left: 1px solid #8d9b93;
-  background:
-    repeating-linear-gradient(
-      to bottom,
-      #e8efeb 0,
-      #e8efeb 1px,
-      transparent 1px,
-      transparent 25%
-    );
+  background: repeating-linear-gradient(
+    to bottom,
+    #e8efeb 0,
+    #e8efeb 1px,
+    transparent 1px,
+    transparent 25%
+  );
 }
 
 .chart-line {
@@ -758,7 +808,9 @@ h3 {
   stroke-linejoin: round;
   stroke-width: 4;
   filter: drop-shadow(0 2px 3px rgba(33, 115, 70, 0.24));
-  transition: stroke 180ms ease, filter 180ms ease;
+  transition:
+    stroke 180ms ease,
+    filter 180ms ease;
 }
 
 .chart-line circle {
@@ -806,7 +858,10 @@ h3 {
   box-shadow:
     inset -5px 0 8px rgba(16, 61, 42, 0.14),
     0 5px 10px rgba(9, 32, 22, 0.12);
-  transition: filter 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+  transition:
+    filter 180ms ease,
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .chart-column em {
@@ -901,7 +956,10 @@ h3 {
   font-weight: 650;
   text-decoration-color: rgba(33, 115, 70, 0.36);
   text-underline-offset: 4px;
-  transition: color 180ms ease, transform 180ms ease, text-decoration-color 180ms ease;
+  transition:
+    color 180ms ease,
+    transform 180ms ease,
+    text-decoration-color 180ms ease;
 }
 
 .about-layout {
@@ -1048,7 +1106,11 @@ details {
   border-radius: var(--radius);
   background: #fff;
   box-shadow: 0 8px 24px rgba(9, 32, 22, 0.04);
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
 }
 
 summary {
@@ -1086,7 +1148,11 @@ details p {
   font-family: var(--font-ui);
   font-weight: 620;
   text-decoration: none;
-  transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease;
 }
 
 .contact-form {
@@ -1097,7 +1163,11 @@ details p {
   border-radius: var(--radius);
   background: var(--excel-50);
   box-shadow: var(--shadow);
-  transition: transform 190ms ease, box-shadow 190ms ease, border-color 190ms ease, background 190ms ease;
+  transition:
+    transform 190ms ease,
+    box-shadow 190ms ease,
+    border-color 190ms ease,
+    background 190ms ease;
 }
 
 .final-benefits {
@@ -1133,7 +1203,16 @@ details p {
   padding: 12px 13px;
   background: #fff;
   color: var(--ink);
-  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.contact-form button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
 }
 
 .contact-form textarea {
@@ -1157,6 +1236,35 @@ details p {
   font-size: 0.94rem;
 }
 
+.form-status:empty {
+  display: none;
+}
+
+.form-status.is-error {
+  color: #9b1c1c;
+}
+
+.form-status.is-success {
+  color: var(--excel-900);
+  font-weight: 620;
+}
+
+.consent-field {
+  grid-template-columns: 18px minmax(0, 1fr);
+  align-items: start;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.consent-field input {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: var(--excel-700);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .hero-benefits li:hover {
     border-color: rgba(46, 163, 111, 0.7);
@@ -1176,7 +1284,11 @@ details p {
   .trust-card:hover {
     border-color: rgba(33, 115, 70, 0.32);
     background:
-      linear-gradient(180deg, rgba(226, 240, 217, 0.42), rgba(255, 255, 255, 0) 48%),
+      linear-gradient(
+        180deg,
+        rgba(226, 240, 217, 0.42),
+        rgba(255, 255, 255, 0) 48%
+      ),
       var(--surface);
     box-shadow: var(--shadow-hover);
     transform: translateY(-6px);

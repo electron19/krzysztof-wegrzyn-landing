@@ -1,73 +1,146 @@
 # Krzysztof Węgrzyn - Landing Page
 
-Statyczna strona marki osobistej Krzysztof Węgrzyn: szkolenia Microsoft Excel, Power Query i Power BI.
+Landing page marki osobistej Krzysztof Węgrzyn dla szkoleń Microsoft Excel, Power Query i Power BI.
+
+Projekt jest przebudowany na Next.js App Router, TypeScript, Vercel Functions i Supabase PostgreSQL. Formularz kontaktowy zapisuje zgłoszenia w bazie danych jako źródle prawdy. E-mail może zostać dodany później tylko jako powiadomienie, bez ryzyka utraty leadów.
+
+## Stack
+
+- Next.js
+- React
+- TypeScript
+- Vercel
+- Supabase PostgreSQL
+- Zod
 
 ## Struktura
 
 ```text
 .
-├── .github/workflows/deploy-pages.yml
-├── assets/
-│   ├── favicon.svg
-│   └── krzysztof-wegrzyn-excel-power-bi-training.png
-├── 404.html
-├── CNAME
-├── contact-config.example.php
-├── dziekuje.html
-├── index.html
-├── robots.txt
-├── script.js
-├── send-contact.php
-├── sitemap.xml
-├── site.webmanifest
-└── styles.css
+├── app/
+│   ├── api/contact/route.ts
+│   ├── globals.css
+│   ├── layout.tsx
+│   ├── not-found.tsx
+│   └── page.tsx
+├── components/
+│   ├── contact-form.tsx
+│   └── site-header.tsx
+├── lib/
+│   ├── contact-schema.ts
+│   ├── rate-limit.ts
+│   ├── request.ts
+│   └── supabase.ts
+├── public/
+│   ├── assets/
+│   ├── robots.txt
+│   ├── sitemap.xml
+│   └── site.webmanifest
+├── supabase/migrations/
+├── types/
+│   ├── contact.ts
+│   └── database.ts
+└── .github/workflows/ci.yml
 ```
 
-## Publikacja na GitHub Pages
+## Formularz Kontaktowy
 
-1. Utwórz repozytorium na GitHubie, np. `electron19/krzysztof-wegrzyn-landing`.
-2. Wrzuć zawartość tego katalogu do głównego katalogu repozytorium.
-3. W ustawieniach repozytorium przejdź do `Settings -> Pages`.
-4. Jako source wybierz `GitHub Actions`.
-5. Po pushu workflow `Deploy static site to GitHub Pages` opublikuje stronę.
-
-## Domena
-
-Plik `CNAME` ustawia domenę:
+Endpoint:
 
 ```text
-krzysztofwegrzyn.pl
+POST /api/contact
 ```
 
-Jeśli strona ma działać tylko pod adresem GitHub Pages, usuń `CNAME` i zaktualizuj adresy canonical, Open Graph, `robots.txt` oraz `sitemap.xml`.
+Pola:
 
-## Formularz kontaktowy
+- `name`
+- `email`
+- `phone`
+- `company`
+- `message`
+- `consent`
+- `website` jako honeypot antyspamowy
 
-Formularz wysyła dane do `send-contact.php`, który korzysta z funkcji `mail()` na hostingu PHP i wysyła wiadomość na `krzywegrz@gmail.com`.
+Zabezpieczenia:
 
-GitHub Pages nie uruchamia PHP, więc pełna wysyłka formularza działa po wdrożeniu plików na hosting z PHP, np. Hostido. Plik `contact-config.php` jest ignorowany przez Git i może zostać utworzony tylko na serwerze na podstawie `contact-config.example.php`.
+- walidacja serwerowa Zod
+- honeypot
+- limit 5 zgłoszeń na 10 minut z jednego hasha IP
+- brak zapisu surowego IP
+- RLS w Supabase
+- brak dostępu `anon` i `authenticated` do tabel formularza
+- logowanie błędów bez ujawniania stack trace użytkownikowi
 
-Cloudflare Turnstile można włączyć przez dodanie sekretu w `contact-config.php` i widgetu Turnstile w formularzu.
+## Supabase
 
-## Lokalny podgląd
+Migracje znajdują się w:
+
+```text
+supabase/migrations/
+```
+
+Utworzone obiekty:
+
+- `public.leads`
+- `public.contact_rate_limits`
+- `public.check_contact_rate_limit(...)`
+
+Tabela `leads` ma pola przygotowane pod CRM:
+
+- `status`
+- `crm_provider`
+- `crm_external_id`
+- `crm_synced_at`
+- `metadata`
+
+## Zmienne Środowiskowe
+
+Skopiuj `.env.example` do lokalnego `.env.local` i ustaw:
 
 ```bash
-python3 -m http.server 4173
+SUPABASE_URL=https://uquxzswczoytqlocsxyx.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=
+CONTACT_IP_HASH_SECRET=
 ```
 
-Następnie otwórz:
+Na Vercel dodaj te same zmienne w ustawieniach projektu. `SUPABASE_SERVICE_ROLE_KEY` musi pozostać wyłącznie po stronie serwera.
+
+## Lokalny Start
+
+```bash
+npm install
+npm run dev
+```
+
+Adres lokalny:
 
 ```text
-http://localhost:4173/
+http://localhost:3000
 ```
 
-## Pliki SEO
+## Weryfikacja
 
-Strona zawiera:
+```bash
+npm run lint
+npm run typecheck
+npm run build
+```
 
-- meta title i description
-- Open Graph i Twitter Card
-- dane strukturalne JSON-LD
+## SEO
+
+Projekt zawiera:
+
+- metadata Next.js
+- Open Graph
+- Twitter Card
+- JSON-LD
 - `robots.txt`
 - `sitemap.xml`
-- manifest PWA
+- manifest
+- treści pod frazy: szkolenia Excel dla firm, Power Query, Power BI, automatyzacja raportów Excel, analiza danych Excel
+
+## Deploy
+
+Docelowy hosting: Vercel.
+
+Po podłączeniu repozytorium do Vercel każdy push do `main` może uruchamiać automatyczny deploy. CI w GitHub Actions uruchamia lint, TypeScript i build.
