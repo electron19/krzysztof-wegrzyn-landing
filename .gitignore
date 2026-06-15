@@ -4,6 +4,7 @@ Thumbs.db
 *.zip
 .env
 .env.*
+contact-config.php
 node_modules/
 dist/
 build/

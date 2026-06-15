@@ -4,6 +4,7 @@ const nav = document.querySelector("[data-nav]");
 const year = document.querySelector("[data-year]");
 const form = document.querySelector("#contact-form");
 const formStatus = document.querySelector("[data-form-status]");
+const formStartedAt = form?.querySelector('input[name="form_started_at"]');
 
 function updateHeaderState() {
   header.classList.toggle("is-scrolled", window.scrollY > 16);
@@ -11,6 +12,18 @@ function updateHeaderState() {
 
 if (year) {
   year.textContent = new Date().getFullYear();
+}
+
+if (formStartedAt) {
+  formStartedAt.value = String(Math.floor(Date.now() / 1000));
+}
+
+if (formStatus) {
+  const contactStatus = new URLSearchParams(window.location.search).get("kontakt");
+
+  if (contactStatus === "blad") {
+    formStatus.textContent = "Nie udało się wysłać wiadomości. Spróbuj ponownie albo napisz bezpośrednio na e-mail.";
+  }
 }
 
 updateHeaderState();
@@ -36,25 +49,8 @@ form?.addEventListener("submit", (event) => {
     return;
   }
 
-  const data = new FormData(form);
-  const email = String(data.get("email") || "").trim();
-  const topic = String(data.get("topic") || "").trim();
-  const replyTo = form.querySelector('input[name="_replyto"]');
-  const subject = form.querySelector('input[name="_subject"]');
-  const next = form.querySelector('input[name="_next"]');
-
-  if (replyTo) {
-    replyTo.value = email;
-  }
-
-  if (subject) {
-    subject.value = topic
-      ? `Zapytanie o szkolenie: ${topic}`
-      : "Nowe zapytanie o szkolenie ze strony Krzysztofa Węgrzyna";
-  }
-
-  if (next && ["http:", "https:"].includes(window.location.protocol)) {
-    next.value = new URL("dziekuje.html", window.location.href).href;
+  if (formStartedAt && !formStartedAt.value) {
+    formStartedAt.value = String(Math.floor(Date.now() / 1000));
   }
 
   if (formStatus) {

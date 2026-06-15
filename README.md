@@ -12,9 +12,12 @@ Statyczna strona marki osobistej Krzysztof Węgrzyn: szkolenia Microsoft Excel, 
 │   └── krzysztof-wegrzyn-excel-power-bi-training.png
 ├── 404.html
 ├── CNAME
+├── contact-config.example.php
+├── dziekuje.html
 ├── index.html
 ├── robots.txt
 ├── script.js
+├── send-contact.php
 ├── sitemap.xml
 ├── site.webmanifest
 └── styles.css
@@ -38,6 +41,14 @@ krzysztofwegrzyn.pl
 
 Jeśli strona ma działać tylko pod adresem GitHub Pages, usuń `CNAME` i zaktualizuj adresy canonical, Open Graph, `robots.txt` oraz `sitemap.xml`.
 
+## Formularz kontaktowy
+
+Formularz wysyła dane do `send-contact.php`, który korzysta z funkcji `mail()` na hostingu PHP i wysyła wiadomość na `krzywegrz@gmail.com`.
+
+GitHub Pages nie uruchamia PHP, więc pełna wysyłka formularza działa po wdrożeniu plików na hosting z PHP, np. Hostido. Plik `contact-config.php` jest ignorowany przez Git i może zostać utworzony tylko na serwerze na podstawie `contact-config.example.php`.
+
+Cloudflare Turnstile można włączyć przez dodanie sekretu w `contact-config.php` i widgetu Turnstile w formularzu.
+
 ## Lokalny podgląd
 
 ```bash
@@ -60,4 +71,3 @@ Strona zawiera:
 - `robots.txt`
 - `sitemap.xml`
 - manifest PWA
-
